@@ -1,0 +1,178 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#calculator {
+  width: 300px;
+  height: 400px; /* Fixed height for a compact calculator */
+  border: 1px solid #000;
+  background-color: #000;
+  padding: 20px; /* Consistent padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Aligns content from the top */
+}
+
+#display {
+  width: 100%;
+  height: 60px; /* Fixed height for display */
+  position: relative;
+  margin-bottom: 20px; /* Space before buttons */
+}
+
+/* Display area - uses pseudo-elements for two lines */
+#display::before {
+  content: attr(data-expression);
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 30px; /* Half height for expression */
+  background-color: #000;
+  color: #ffa500; /* Orange text for expression */
+  text-align: right;
+  padding: 5px 10px;
+  font-size: 16px;
+  line-height: 20px; /* Better vertical alignment */
+}
+
+#display::after {
+  content: attr(data-current);
+  position: absolute;
+  top: 30px; /* Starts after expression */
+  right: 0;
+  width: 100%;
+  height: 30px; /* Half height for current */
+  background-color: #000;
+  color: #fff; /* White text for current */
+  text-align: right;
+  padding: 5px 10px;
+  font-size: 24px;
+  line-height: 20px; /* Better vertical alignment */
+}
+
+/* Buttons grid */
+#buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  flex-grow: 1; /* Fills remaining space, pushing to bottom */
+  min-height: 0; /* Prevents overflow */
+}
+
+/* Style for all buttons */
+button {
+  height: 60px;
+  border: 1px solid #000;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  background-color: #4d4d4d; /* Dark grey for most buttons */
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Specific button styles using grid positions */
+#clear {
+  grid-column: 1 / 3; /* Spans two columns */
+  grid-row: 1 / 2;
+  background-color: #ac3939; /* Red for AC */
+}
+
+#divide {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+#multiply {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+#seven {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+#eight {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+#nine {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#subtract {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+}
+
+#four {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+#five {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+
+#six {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+#add {
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
+}
+
+#one {
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+}
+
+#two {
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+}
+
+#three {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+}
+
+#equals {
+  grid-column: 4 / 5;
+  grid-row: 4 / 6; /* Spans two rows for larger = */
+  background-color: #004466; /* Blue for equals */
+  height: auto; /* Let grid handle height */
+}
+
+#zero {
+  grid-column: 1 / 3; /* Spans two columns */
+  grid-row: 5 / 6;
+}
+
+#decimal {
+  grid-column: 3 / 4;
+  grid-row: 5 / 6;
+}
